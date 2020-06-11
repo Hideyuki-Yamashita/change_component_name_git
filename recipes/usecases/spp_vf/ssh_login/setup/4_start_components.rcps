@@ -1,7 +1,7 @@
 # Start components for path2
 vf 1; component start cls2 8 classifier
-vf 1; component start fwd5 9 forward
-vf 1; component start fwd6 10 forward
-vf 1; component start fwd7 11 forward
-vf 1; component start fwd8 12 forward
-vf 1; component start mgr2 13 merge
+vf 1; component start fwd5 9 forwarder
+vf 1; component start fwd6 10 forwarder
+vf 1; component start fwd7 11 forwarder
+vf 1; component start fwd8 12 forwarder
+vf 1; component start mgr2 13 merger
