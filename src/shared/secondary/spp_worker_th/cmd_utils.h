@@ -17,12 +17,12 @@
 
 /**
  * TODO(Yamashita) change type names.
- *  "merge" -> "merger", "forward" -> "forwarder".
+ *  "merger" -> "merger", "forwarder" -> "forwarder".
  */
 /** Identifier string for each component (status command) */
 #define SPPWK_TYPE_CLS_STR "classifier"
-#define SPPWK_TYPE_MRG_STR "merge"
-#define SPPWK_TYPE_FWD_STR "forward"
+#define SPPWK_TYPE_MRG_STR "merger"
+#define SPPWK_TYPE_FWD_STR "forwarder"
 #define SPPWK_TYPE_MIR_STR "mirror"
 #define SPPWK_TYPE_PCAP_STR "pcap"
 #define SPPWK_TYPE_NONE_STR "unuse"
@@ -56,12 +56,12 @@
 
 /**
  * TODO(Yamashita) change type names.
- *  "merge" -> "merger", "forward" -> "forwarder".
+ *  "merger" -> "merger", "forwarder" -> "forwarder".
  */
 /* Name string for each component */
 #define CORE_TYPE_CLASSIFIER_MAC_STR "classifier"
-#define CORE_TYPE_MERGE_STR	     "merge"
-#define CORE_TYPE_FORWARD_STR	     "forward"
+#define CORE_TYPE_MERGE_STR	     "merger"
+#define CORE_TYPE_FORWARD_STR	     "forwarder"
 #define CORE_TYPE_MIRROR_STR	     "mirror"
 
 /* Classifier Type */
