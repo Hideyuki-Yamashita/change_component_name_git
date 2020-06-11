@@ -422,12 +422,11 @@ class SppTopo(object):
         Return True if it is already running, or False if not.
         """
 
-        # TODO(yasufum) implement it.
-        if comp['type'] == 'forward':  # TODO change to forwarder
+        if comp['type'] == 'forwarder':
             pass
         if comp['type'] == 'classifier':
             pass
-        if comp['type'] == 'merge':  # TODO change to merger
+        if comp['type'] == 'merger':
             pass
         elif comp['type'] == 'mirror':
             pass
@@ -546,7 +545,7 @@ class SppTopo(object):
                             self.SEC_COLORS[sec["client-id"]],
                             l_style)
 
-                    if comp['type'] == 'forward':
+                    if comp['type'] == 'forwarder':
                         if len(comp['rx_port']) > 0:
                             rxport = comp['rx_port'][0]['port']
                             if self._is_valid_port(rxport):
@@ -587,7 +586,7 @@ class SppTopo(object):
                                                     dst_type, dst_id, attrs)
                             links.append(tmp)
 
-                    elif comp['type'] == 'merge':  # TODO change to merger
+                    elif comp['type'] == 'merger':
                         if len(comp['tx_port']) > 0:
                             txport = comp['tx_port'][0]['port']
                             if self._is_valid_port(txport):
