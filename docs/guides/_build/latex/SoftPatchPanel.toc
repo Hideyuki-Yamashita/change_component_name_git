@@ -1,0 +1,462 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Overview}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Design}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Soft Patch Panel}{2}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Reference}{2}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.2}SPP Controller}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}spp-ctl}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}SPP CLI}{3}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Reference}{4}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}SPP Primary}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Master and Worker Threads}{4}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Worker Types}{4}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}SPP Secondary}{5}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}spp\_nfv}{5}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}spp\_vf}{6}{subsection.2.4.2}
+\contentsline {subsubsection}{Forwarder}{6}{subsubsection*.3}
+\contentsline {subsubsection}{Merger}{8}{subsubsection*.4}
+\contentsline {subsubsection}{Classifier}{8}{subsubsection*.5}
+\contentsline {subsection}{\numberline {2.4.3}spp\_mirror}{8}{subsection.2.4.3}
+\contentsline {subsubsection}{Mirror}{8}{subsubsection*.6}
+\contentsline {subsection}{\numberline {2.4.4}spp\_pcap}{9}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Implementation}{10}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}spp\_nfv}{10}{subsection.2.5.1}
+\contentsline {subsubsection}{Initialization}{10}{subsubsection*.7}
+\contentsline {subsubsection}{Launch Worker Threads}{11}{subsubsection*.8}
+\contentsline {subsubsection}{Parsing User Command}{11}{subsubsection*.9}
+\contentsline {subsection}{\numberline {2.5.2}spp\_vf}{12}{subsection.2.5.2}
+\contentsline {subsubsection}{Initialization}{12}{subsubsection*.10}
+\contentsline {subsubsection}{Slave Main}{13}{subsubsection*.11}
+\contentsline {subsubsection}{Data structure of classifier}{13}{subsubsection*.12}
+\contentsline {subsubsection}{Classifying the packet}{14}{subsubsection*.13}
+\contentsline {subsubsection}{Packet processing in forwarder and merger}{14}{subsubsection*.14}
+\contentsline {subsubsection}{L2 Multicast Support}{15}{subsubsection*.15}
+\contentsline {subsubsection}{Two phase update for forwarding}{15}{subsubsection*.16}
+\contentsline {subsection}{\numberline {2.5.3}spp\_mirror}{16}{subsection.2.5.3}
+\contentsline {subsubsection}{Slave Main}{16}{subsubsection*.17}
+\contentsline {subsubsection}{Mirroring Packets}{16}{subsubsection*.18}
+\contentsline {subsection}{\numberline {2.5.4}spp\_pcap}{17}{subsection.2.5.4}
+\contentsline {subsubsection}{Slave Main}{17}{subsubsection*.19}
+\contentsline {subsubsection}{Receiving Pakcets}{18}{subsubsection*.20}
+\contentsline {subsubsection}{Writing Packet}{18}{subsubsection*.21}
+\contentsline {chapter}{\numberline {3}Getting Started Guide}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Setup}{19}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Reserving Hugepages}{19}{subsection.3.1.1}
+\contentsline {subsubsection}{1GB Hugepage}{19}{subsubsection*.22}
+\contentsline {subsubsection}{2MB Hugepage}{20}{subsubsection*.23}
+\contentsline {subsection}{\numberline {3.1.2}Mount hugepages}{20}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Disable ASLR}{20}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Using Virtual Machine}{21}{subsection.3.1.4}
+\contentsline {subsubsection}{Server mode v.s. Client mode}{21}{subsubsection*.24}
+\contentsline {subsubsection}{Libvirt}{21}{subsubsection*.25}
+\contentsline {subsubsection}{Trouble Shooting}{22}{subsubsection*.26}
+\contentsline {subsection}{\numberline {3.1.5}Python 2 or 3 ?}{22}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Driver for Mellanox NIC}{22}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.7}Reference}{23}{subsection.3.1.7}
+\contentsline {section}{\numberline {3.2}Install DPDK and SPP}{23}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Required Packages}{23}{subsection.3.2.1}
+\contentsline {subsubsection}{Ubuntu}{23}{subsubsection*.27}
+\contentsline {subsubsection}{CentOS}{24}{subsubsection*.28}
+\contentsline {subsection}{\numberline {3.2.2}DPDK}{24}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Pyhton}{25}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}SPP}{25}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}Binding Network Ports to DPDK}{26}{subsection.3.2.5}
+\contentsline {subsubsection}{UIO Drivers}{26}{subsubsection*.29}
+\contentsline {subsubsection}{Binding Network Ports}{26}{subsubsection*.30}
+\contentsline {subsection}{\numberline {3.2.6}Confirm DPDK is setup properly}{27}{subsection.3.2.6}
+\contentsline {subsection}{\numberline {3.2.7}Build Documentation}{27}{subsection.3.2.7}
+\contentsline {section}{\numberline {3.3}How to Use}{28}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Quick Start}{29}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}SPP Controller}{30}{subsection.3.3.2}
+\contentsline {subsubsection}{spp-ctl}{31}{subsubsection*.31}
+\contentsline {subsubsection}{SPP CLI}{31}{subsubsection*.32}
+\contentsline {paragraph}{Default Configuration}{33}{paragraph*.33}
+\contentsline {subsection}{\numberline {3.3.3}SPP Primary}{33}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}SPP Secondary}{36}{subsection.3.3.4}
+\contentsline {subsubsection}{spp\_nfv}{36}{subsubsection*.34}
+\contentsline {subsubsection}{spp\_vf}{36}{subsubsection*.35}
+\contentsline {subsubsection}{spp\_mirror}{37}{subsubsection*.36}
+\contentsline {subsubsection}{spp\_pcap}{37}{subsubsection*.37}
+\contentsline {subsubsection}{Launch from SPP CLI}{38}{subsubsection*.38}
+\contentsline {subsubsection}{Launch SPP on VM}{39}{subsubsection*.39}
+\contentsline {subsubsection}{Using virsh}{41}{subsubsection*.40}
+\contentsline {paragraph}{virt-install}{41}{paragraph*.41}
+\contentsline {paragraph}{Edit Config}{42}{paragraph*.42}
+\contentsline {paragraph}{Launch VM}{43}{paragraph*.43}
+\contentsline {section}{\numberline {3.4}Performance Optimization}{43}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Reduce Context Switches}{43}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Optimizing QEMU Performance}{43}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Reference}{44}{subsection.3.4.3}
+\contentsline {chapter}{\numberline {4}Use Cases}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}spp\_nfv}{45}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Single spp\_nfv}{45}{subsection.4.1.1}
+\contentsline {subsubsection}{Configure spp\_nfv as L2fwd}{45}{subsubsection*.44}
+\contentsline {subsubsection}{Configure spp\_nfv for Loopback}{46}{subsubsection*.45}
+\contentsline {subsection}{\numberline {4.1.2}Dual spp\_nfv}{46}{subsection.4.1.2}
+\contentsline {subsubsection}{Configure Two spp\_nfv as L2fwd}{47}{subsubsection*.46}
+\contentsline {subsubsection}{Configure two spp\_nfv for Loopback}{47}{subsubsection*.47}
+\contentsline {subsection}{\numberline {4.1.3}Dual spp\_nfv with Ring PMD}{47}{subsection.4.1.3}
+\contentsline {subsubsection}{Ring PMD}{48}{subsubsection*.48}
+\contentsline {subsubsection}{Uni-Directional L2fwd}{48}{subsubsection*.49}
+\contentsline {subsubsection}{Bi-Directional L2fwd}{49}{subsubsection*.50}
+\contentsline {subsection}{\numberline {4.1.4}Single spp\_nfv with Vhost PMD}{50}{subsection.4.1.4}
+\contentsline {subsubsection}{Vhost PMD}{50}{subsubsection*.51}
+\contentsline {subsubsection}{Setup Vhost PMD}{50}{subsubsection*.52}
+\contentsline {subsubsection}{Setup Network Configuration in spp\_nfv}{51}{subsubsection*.53}
+\contentsline {subsection}{\numberline {4.1.5}Single spp\_nfv with PCAP PMD}{51}{subsection.4.1.5}
+\contentsline {subsubsection}{PCAP PMD}{51}{subsubsection*.54}
+\contentsline {subsubsection}{Capture Incoming Packets}{52}{subsubsection*.55}
+\contentsline {subsubsection}{Restore dumped Packets}{53}{subsubsection*.56}
+\contentsline {section}{\numberline {4.2}spp\_vf}{54}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Classify ICMP Packets}{54}{subsection.4.2.1}
+\contentsline {subsubsection}{Setup}{54}{subsubsection*.57}
+\contentsline {subsubsection}{Network Configuration}{55}{subsubsection*.58}
+\contentsline {subsubsection}{Send Packet from Remote Host}{55}{subsubsection*.59}
+\contentsline {subsubsection}{Shutdown spp\_vf Components}{56}{subsubsection*.60}
+\contentsline {subsection}{\numberline {4.2.2}SSH Login to VMs}{57}{subsection.4.2.2}
+\contentsline {subsubsection}{Setup}{57}{subsubsection*.61}
+\contentsline {subsubsection}{Network Configuration}{58}{subsubsection*.62}
+\contentsline {subsubsection}{Setup VMs}{60}{subsubsection*.63}
+\contentsline {subsubsection}{Login to VMs}{61}{subsubsection*.64}
+\contentsline {subsubsection}{Shutdown spp\_vf Components}{61}{subsubsection*.65}
+\contentsline {subsubsection}{Exit spp\_vf}{63}{subsubsection*.66}
+\contentsline {section}{\numberline {4.3}spp\_mirror}{63}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Duplicate Packets}{63}{subsection.4.3.1}
+\contentsline {subsubsection}{Network Configuration}{63}{subsubsection*.67}
+\contentsline {subsubsection}{Setup SPP}{63}{subsubsection*.68}
+\contentsline {subsubsection}{Launch spp\_mirror}{64}{subsubsection*.69}
+\contentsline {subsubsection}{Duplicate Packets}{64}{subsubsection*.70}
+\contentsline {subsubsection}{Stop Mirroring}{65}{subsubsection*.71}
+\contentsline {subsection}{\numberline {4.3.2}Monitoring Packets}{66}{subsection.4.3.2}
+\contentsline {subsubsection}{Setup SPP and VMs}{66}{subsubsection*.72}
+\contentsline {subsubsection}{Netowrk Configuration}{66}{subsubsection*.73}
+\contentsline {subsubsection}{Launch spp\_mirror}{68}{subsubsection*.74}
+\contentsline {subsubsection}{Receive Packet on VM3}{68}{subsubsection*.75}
+\contentsline {subsubsection}{Stop Mirroring}{69}{subsubsection*.76}
+\contentsline {section}{\numberline {4.4}spp\_pcap}{69}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Packet Capture}{69}{subsection.4.4.1}
+\contentsline {subsubsection}{Launch spp\_pcap}{69}{subsubsection*.77}
+\contentsline {subsubsection}{Start Capture}{70}{subsubsection*.78}
+\contentsline {subsubsection}{Stop Capture}{71}{subsubsection*.79}
+\contentsline {subsubsection}{Shutdown spp\_pcap}{71}{subsubsection*.80}
+\contentsline {subsubsection}{Inspect PCAP Files}{71}{subsubsection*.81}
+\contentsline {paragraph}{Merge PCAP Files}{72}{paragraph*.82}
+\contentsline {paragraph}{Inspect PCAP file}{72}{paragraph*.83}
+\contentsline {section}{\numberline {4.5}Multiple Nodes}{72}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Launch SPP on Multiple Nodes}{73}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Switch Nodes}{74}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Configure Patch Panel Node}{74}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Configure Service VM Nodes}{75}{subsection.4.5.4}
+\contentsline {subsection}{\numberline {4.5.5}Change Path to Backup Node}{75}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}Hardware Offload}{75}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Hardware Classification}{76}{subsection.4.6.1}
+\contentsline {subsubsection}{Setup}{76}{subsubsection*.84}
+\contentsline {subsubsection}{Configuration}{77}{subsubsection*.85}
+\contentsline {subsection}{\numberline {4.6.2}Manipulate VLAN tag}{78}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Connecting with VMs}{79}{subsection.4.6.3}
+\contentsline {subsection}{\numberline {4.6.4}Reference}{81}{subsection.4.6.4}
+\contentsline {section}{\numberline {4.7}Pipe PMD}{81}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Using pipe PMD}{81}{subsection.4.7.1}
+\contentsline {subsubsection}{Requirement of DPDK application using spp\_pipe}{81}{subsubsection*.86}
+\contentsline {subsection}{\numberline {4.7.2}Use cases}{82}{subsection.4.7.2}
+\contentsline {subsubsection}{Direct communication between applications}{82}{subsubsection*.87}
+\contentsline {subsubsection}{Fixed application chain using spp\_nfv}{82}{subsubsection*.88}
+\contentsline {subsubsection}{Service function chaining using spp\_vf}{83}{subsubsection*.89}
+\contentsline {chapter}{\numberline {5}SPP Commands}{84}{chapter.5}
+\contentsline {section}{\numberline {5.1}Primary Commands}{84}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}status}{84}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}clear}{85}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}add}{85}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}patch}{86}{subsection.5.1.4}
+\contentsline {subsection}{\numberline {5.1.5}forward}{86}{subsection.5.1.5}
+\contentsline {subsection}{\numberline {5.1.6}stop}{86}{subsection.5.1.6}
+\contentsline {subsection}{\numberline {5.1.7}del}{87}{subsection.5.1.7}
+\contentsline {subsection}{\numberline {5.1.8}launch}{87}{subsection.5.1.8}
+\contentsline {subsection}{\numberline {5.1.9}flow}{87}{subsection.5.1.9}
+\contentsline {section}{\numberline {5.2}Secondary Commands}{89}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}spp\_nfv}{89}{subsection.5.2.1}
+\contentsline {subsubsection}{status}{89}{subsubsection*.90}
+\contentsline {subsubsection}{add}{90}{subsubsection*.91}
+\contentsline {subsubsection}{patch}{90}{subsubsection*.92}
+\contentsline {subsubsection}{forward}{90}{subsubsection*.93}
+\contentsline {subsubsection}{stop}{90}{subsubsection*.94}
+\contentsline {subsubsection}{del}{91}{subsubsection*.95}
+\contentsline {subsubsection}{exit}{91}{subsubsection*.96}
+\contentsline {subsection}{\numberline {5.2.2}spp\_vf}{91}{subsection.5.2.2}
+\contentsline {subsubsection}{status}{92}{subsubsection*.97}
+\contentsline {subsubsection}{component}{93}{subsubsection*.98}
+\contentsline {subsubsection}{port}{94}{subsubsection*.99}
+\contentsline {paragraph}{Adding port}{94}{paragraph*.100}
+\contentsline {paragraph}{Deleting port}{95}{paragraph*.101}
+\contentsline {subsubsection}{classifier\_table}{95}{subsubsection*.102}
+\contentsline {subsubsection}{exit}{96}{subsubsection*.103}
+\contentsline {subsection}{\numberline {5.2.3}spp\_mirror}{96}{subsection.5.2.3}
+\contentsline {subsubsection}{status}{98}{subsubsection*.104}
+\contentsline {subsubsection}{component}{98}{subsubsection*.105}
+\contentsline {subsubsection}{port}{99}{subsubsection*.106}
+\contentsline {paragraph}{Adding port}{99}{paragraph*.107}
+\contentsline {paragraph}{Deleting port}{99}{paragraph*.108}
+\contentsline {subsubsection}{exit}{100}{subsubsection*.109}
+\contentsline {subsection}{\numberline {5.2.4}spp\_pcap}{100}{subsection.5.2.4}
+\contentsline {subsubsection}{status}{101}{subsubsection*.110}
+\contentsline {subsubsection}{start}{102}{subsubsection*.111}
+\contentsline {subsubsection}{stop}{102}{subsubsection*.112}
+\contentsline {subsubsection}{exit}{102}{subsubsection*.113}
+\contentsline {section}{\numberline {5.3}Common Commands}{102}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}status}{102}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}config}{102}{subsection.5.3.2}
+\contentsline {subsubsection}{Show Config}{103}{subsubsection*.114}
+\contentsline {subsubsection}{Set Config}{103}{subsubsection*.115}
+\contentsline {subsection}{\numberline {5.3.3}playback}{103}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}record}{104}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}history}{104}{subsection.5.3.5}
+\contentsline {subsection}{\numberline {5.3.6}redo}{104}{subsection.5.3.6}
+\contentsline {subsection}{\numberline {5.3.7}server}{104}{subsection.5.3.7}
+\contentsline {subsection}{\numberline {5.3.8}env}{105}{subsection.5.3.8}
+\contentsline {subsection}{\numberline {5.3.9}pwd}{105}{subsection.5.3.9}
+\contentsline {subsection}{\numberline {5.3.10}cd}{105}{subsection.5.3.10}
+\contentsline {subsection}{\numberline {5.3.11}ls}{105}{subsection.5.3.11}
+\contentsline {subsection}{\numberline {5.3.12}mkdir}{106}{subsection.5.3.12}
+\contentsline {subsection}{\numberline {5.3.13}cat}{106}{subsection.5.3.13}
+\contentsline {subsection}{\numberline {5.3.14}less}{106}{subsection.5.3.14}
+\contentsline {subsection}{\numberline {5.3.15}bye}{106}{subsection.5.3.15}
+\contentsline {subsection}{\numberline {5.3.16}exit}{106}{subsection.5.3.16}
+\contentsline {subsection}{\numberline {5.3.17}help}{107}{subsection.5.3.17}
+\contentsline {section}{\numberline {5.4}Experimental Commands}{107}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}topo}{107}{subsection.5.4.1}
+\contentsline {subsubsection}{Output to Terminal}{108}{subsubsection*.116}
+\contentsline {subsubsection}{Output to Browser}{108}{subsubsection*.117}
+\contentsline {subsubsection}{Output to File}{109}{subsubsection*.118}
+\contentsline {subsection}{\numberline {5.4.2}topo\_subgraph}{110}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}load\_cmd}{111}{subsection.5.4.3}
+\contentsline {chapter}{\numberline {6}Tools}{113}{chapter.6}
+\contentsline {section}{\numberline {6.1}SPP Container}{113}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Overview}{113}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Getting Started}{114}{subsection.6.1.2}
+\contentsline {subsubsection}{Setup DPDK and SPP}{114}{subsubsection*.119}
+\contentsline {subsubsection}{Build Docker Images}{114}{subsubsection*.120}
+\contentsline {subsubsection}{Launch SPP and App Containers}{115}{subsubsection*.121}
+\contentsline {paragraph}{SPP Controller}{115}{paragraph*.122}
+\contentsline {paragraph}{SPP Primary Container}{116}{paragraph*.123}
+\contentsline {paragraph}{SPP Secondary Container}{116}{paragraph*.124}
+\contentsline {paragraph}{App Container}{116}{paragraph*.125}
+\contentsline {subsubsection}{Run Applications}{117}{subsubsection*.126}
+\contentsline {subsection}{\numberline {6.1.3}Install}{118}{subsection.6.1.3}
+\contentsline {subsubsection}{Required Packages}{119}{subsubsection*.127}
+\contentsline {subsubsection}{Configurations}{119}{subsubsection*.128}
+\contentsline {paragraph}{Run docker without sudo}{119}{paragraph*.129}
+\contentsline {paragraph}{Network Proxy}{119}{paragraph*.130}
+\contentsline {subsection}{\numberline {6.1.4}Build Images}{120}{subsection.6.1.4}
+\contentsline {subsubsection}{Version Control for Images}{121}{subsubsection*.131}
+\contentsline {subsubsection}{Dockerfiles}{121}{subsubsection*.132}
+\contentsline {subsubsection}{Build suricata image}{122}{subsubsection*.133}
+\contentsline {subsubsection}{Inspect Inside of Container}{123}{subsubsection*.134}
+\contentsline {subsection}{\numberline {6.1.5}App Container Launchers}{123}{subsection.6.1.5}
+\contentsline {subsubsection}{Setup}{123}{subsubsection*.135}
+\contentsline {subsubsection}{SPP Primary Container}{123}{subsubsection*.136}
+\contentsline {subsubsection}{SPP Secondary Container}{125}{subsubsection*.137}
+\contentsline {subsubsection}{L2fwd Container}{126}{subsubsection*.138}
+\contentsline {subsubsection}{L3fwd Container}{127}{subsubsection*.139}
+\contentsline {subsubsection}{L3fwd-acl Container}{129}{subsubsection*.140}
+\contentsline {subsubsection}{Testpmd Container}{130}{subsubsection*.141}
+\contentsline {subsubsection}{Pktgen-dpdk Container}{134}{subsubsection*.142}
+\contentsline {subsubsection}{Load-Balancer Container}{136}{subsubsection*.143}
+\contentsline {subsubsection}{Suricata Container}{139}{subsubsection*.144}
+\contentsline {subsubsection}{Helloworld Container}{140}{subsubsection*.145}
+\contentsline {subsection}{\numberline {6.1.6}Use Cases}{140}{subsection.6.1.6}
+\contentsline {subsubsection}{Perfromance Test of Vhost in Single Node}{140}{subsubsection*.146}
+\contentsline {subsubsection}{Performance Test of Ring}{142}{subsubsection*.147}
+\contentsline {subsubsection}{Pktgen and L2fwd}{144}{subsubsection*.148}
+\contentsline {subsubsection}{Pktgen and L2fwd using less Lcores}{146}{subsubsection*.149}
+\contentsline {subsubsection}{Load-Balancer and Pktgen}{148}{subsubsection*.150}
+\contentsline {subsection}{\numberline {6.1.7}How to Define Your App Launcher}{151}{subsection.6.1.7}
+\contentsline {subsubsection}{Build Image}{151}{subsubsection*.151}
+\contentsline {subsubsection}{Create App Container Script}{151}{subsubsection*.152}
+\contentsline {subsubsection}{DPDK Sample App Container}{151}{subsubsection*.153}
+\contentsline {subsubsection}{None DPDK Sample Applications in Container}{153}{subsubsection*.154}
+\contentsline {section}{\numberline {6.2}Helper tools}{154}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}CPU Layout}{155}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Secondary Process Launcher}{156}{subsection.6.2.2}
+\contentsline {section}{\numberline {6.3}Vdev\_test}{156}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Usage}{156}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Examples}{157}{subsection.6.3.2}
+\contentsline {subsubsection}{Examining spp\_pipe}{157}{subsubsection*.155}
+\contentsline {subsubsection}{Examining vhost}{157}{subsubsection*.156}
+\contentsline {chapter}{\numberline {7}API Reference}{159}{chapter.7}
+\contentsline {section}{\numberline {7.1}spp-ctl REST API}{159}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Overview}{159}{subsection.7.1.1}
+\contentsline {subsubsection}{Request and Response}{159}{subsubsection*.157}
+\contentsline {subsubsection}{Error code}{159}{subsubsection*.158}
+\contentsline {section}{\numberline {7.2}Independent of Process Type}{160}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}GET /v1/processes}{160}{subsection.7.2.1}
+\contentsline {subsubsection}{Response}{160}{subsubsection*.159}
+\contentsline {subsubsection}{Examples}{160}{subsubsection*.160}
+\contentsline {paragraph}{Request}{160}{paragraph*.161}
+\contentsline {paragraph}{Response}{160}{paragraph*.162}
+\contentsline {subsection}{\numberline {7.2.2}GET /v1/cpu\_layout}{160}{subsection.7.2.2}
+\contentsline {subsubsection}{Response}{161}{subsubsection*.163}
+\contentsline {subsubsection}{Examples}{161}{subsubsection*.164}
+\contentsline {paragraph}{Request}{161}{paragraph*.165}
+\contentsline {paragraph}{Response}{161}{paragraph*.166}
+\contentsline {subsection}{\numberline {7.2.3}GET /v1/cpu\_usage}{162}{subsection.7.2.3}
+\contentsline {subsubsection}{Response}{162}{subsubsection*.167}
+\contentsline {subsubsection}{Examples}{162}{subsubsection*.168}
+\contentsline {paragraph}{Request}{162}{paragraph*.169}
+\contentsline {paragraph}{Response}{162}{paragraph*.170}
+\contentsline {section}{\numberline {7.3}spp\_primary}{163}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}GET /v1/primary/status}{163}{subsection.7.3.1}
+\contentsline {subsubsection}{Request example}{163}{subsubsection*.171}
+\contentsline {subsubsection}{Response}{163}{subsubsection*.172}
+\contentsline {subsubsection}{Response example}{164}{subsubsection*.173}
+\contentsline {subsection}{\numberline {7.3.2}PUT /v1/primary/forward}{165}{subsection.7.3.2}
+\contentsline {subsubsection}{Request example}{165}{subsubsection*.174}
+\contentsline {subsubsection}{Response}{165}{subsubsection*.175}
+\contentsline {subsubsection}{Equivalent CLI command}{165}{subsubsection*.176}
+\contentsline {subsection}{\numberline {7.3.3}PUT /v1/primary/ports}{165}{subsection.7.3.3}
+\contentsline {subsubsection}{Request (body)}{165}{subsubsection*.177}
+\contentsline {subsubsection}{Request example}{166}{subsubsection*.178}
+\contentsline {subsubsection}{Response}{166}{subsubsection*.179}
+\contentsline {subsubsection}{Equivalent CLI command}{166}{subsubsection*.180}
+\contentsline {subsection}{\numberline {7.3.4}DELETE /v1/primary/status}{166}{subsection.7.3.4}
+\contentsline {subsubsection}{Request example}{166}{subsubsection*.181}
+\contentsline {subsubsection}{Response}{166}{subsubsection*.182}
+\contentsline {subsection}{\numberline {7.3.5}PUT /v1/primary/patches}{166}{subsection.7.3.5}
+\contentsline {subsubsection}{Request (body)}{167}{subsubsection*.183}
+\contentsline {subsubsection}{Request example}{167}{subsubsection*.184}
+\contentsline {subsubsection}{Response}{167}{subsubsection*.185}
+\contentsline {subsubsection}{Equivalent CLI command}{167}{subsubsection*.186}
+\contentsline {subsection}{\numberline {7.3.6}DELETE /v1/primary/patches}{167}{subsection.7.3.6}
+\contentsline {subsubsection}{Request example}{167}{subsubsection*.187}
+\contentsline {subsubsection}{Response}{167}{subsubsection*.188}
+\contentsline {subsubsection}{Equivalent CLI command}{167}{subsubsection*.189}
+\contentsline {subsection}{\numberline {7.3.7}DELETE /v1/primary}{168}{subsection.7.3.7}
+\contentsline {subsubsection}{Request example}{168}{subsubsection*.190}
+\contentsline {subsubsection}{Response}{168}{subsubsection*.191}
+\contentsline {subsection}{\numberline {7.3.8}PUT /v1/primary/launch}{168}{subsection.7.3.8}
+\contentsline {subsubsection}{Request (body)}{168}{subsubsection*.192}
+\contentsline {subsubsection}{Request example}{168}{subsubsection*.193}
+\contentsline {subsubsection}{Response}{169}{subsubsection*.194}
+\contentsline {subsubsection}{Equivalent CLI command}{169}{subsubsection*.195}
+\contentsline {subsection}{\numberline {7.3.9}POST /v1/primary/flow\_rules/port\_id/\{port\_id\}/validate}{169}{subsection.7.3.9}
+\contentsline {subsubsection}{Request example}{169}{subsubsection*.196}
+\contentsline {subsubsection}{Response}{170}{subsubsection*.197}
+\contentsline {subsubsection}{Response example}{170}{subsubsection*.198}
+\contentsline {subsection}{\numberline {7.3.10}POST /v1/primary/flow\_rules/port\_id/\{port\_id\}}{170}{subsection.7.3.10}
+\contentsline {subsubsection}{Request example}{170}{subsubsection*.199}
+\contentsline {subsubsection}{Response}{171}{subsubsection*.200}
+\contentsline {subsubsection}{Response example}{171}{subsubsection*.201}
+\contentsline {subsection}{\numberline {7.3.11}DELETE /v1/primary/flow\_rule/port\_id/\{port\_id\}}{171}{subsection.7.3.11}
+\contentsline {subsubsection}{Request example}{171}{subsubsection*.202}
+\contentsline {subsubsection}{Response}{171}{subsubsection*.203}
+\contentsline {subsubsection}{Response example}{171}{subsubsection*.204}
+\contentsline {subsection}{\numberline {7.3.12}DELETE /v1/primary/flow\_rule/\{rule\_id\}/port\_id/\{port\_id\}}{171}{subsection.7.3.12}
+\contentsline {subsubsection}{Request example}{172}{subsubsection*.205}
+\contentsline {subsubsection}{Response}{172}{subsubsection*.206}
+\contentsline {subsubsection}{Response example}{172}{subsubsection*.207}
+\contentsline {section}{\numberline {7.4}spp\_nfv}{172}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}GET /v1/nfvs/\{client\_id\}}{172}{subsection.7.4.1}
+\contentsline {subsubsection}{Request (path)}{172}{subsubsection*.208}
+\contentsline {subsubsection}{Request example}{172}{subsubsection*.209}
+\contentsline {subsubsection}{Response}{173}{subsubsection*.210}
+\contentsline {subsubsection}{Response example}{173}{subsubsection*.211}
+\contentsline {subsubsection}{Equivalent CLI command}{173}{subsubsection*.212}
+\contentsline {subsection}{\numberline {7.4.2}PUT /v1/nfvs/\{client\_id\}/forward}{173}{subsection.7.4.2}
+\contentsline {subsubsection}{Request (path)}{174}{subsubsection*.213}
+\contentsline {subsubsection}{Request example}{174}{subsubsection*.214}
+\contentsline {subsubsection}{Request (body)}{174}{subsubsection*.215}
+\contentsline {subsubsection}{Response}{174}{subsubsection*.216}
+\contentsline {subsubsection}{Equivalent CLI command}{174}{subsubsection*.217}
+\contentsline {subsection}{\numberline {7.4.3}PUT /v1/nfvs/\{client\_id\}/ports}{174}{subsection.7.4.3}
+\contentsline {subsubsection}{Request(path)}{174}{subsubsection*.218}
+\contentsline {subsubsection}{Request (body)}{175}{subsubsection*.219}
+\contentsline {subsubsection}{Request example}{175}{subsubsection*.220}
+\contentsline {subsubsection}{Response}{175}{subsubsection*.221}
+\contentsline {subsubsection}{Equivalent CLI command}{175}{subsubsection*.222}
+\contentsline {subsection}{\numberline {7.4.4}PUT /v1/nfvs/\{client\_id\}/patches}{175}{subsection.7.4.4}
+\contentsline {subsubsection}{Request (path)}{175}{subsubsection*.223}
+\contentsline {subsubsection}{Request (body)}{175}{subsubsection*.224}
+\contentsline {subsubsection}{Request example}{176}{subsubsection*.225}
+\contentsline {subsubsection}{Response}{176}{subsubsection*.226}
+\contentsline {subsubsection}{Equivalent CLI command}{176}{subsubsection*.227}
+\contentsline {subsection}{\numberline {7.4.5}DELETE /v1/nfvs/\{client\_id\}/patches}{176}{subsection.7.4.5}
+\contentsline {subsubsection}{Request (path)}{176}{subsubsection*.228}
+\contentsline {subsubsection}{Request example}{176}{subsubsection*.229}
+\contentsline {subsubsection}{Response}{176}{subsubsection*.230}
+\contentsline {subsubsection}{Equivalent CLI command}{176}{subsubsection*.231}
+\contentsline {subsection}{\numberline {7.4.6}DELETE /v1/nfvs/\{client\_id\}}{177}{subsection.7.4.6}
+\contentsline {subsubsection}{Request (path)}{177}{subsubsection*.232}
+\contentsline {subsubsection}{Request example}{177}{subsubsection*.233}
+\contentsline {subsubsection}{Response example}{177}{subsubsection*.234}
+\contentsline {subsubsection}{Equivalent CLI command}{177}{subsubsection*.235}
+\contentsline {section}{\numberline {7.5}spp\_vf}{177}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}GET /v1/vfs/\{client\_id\}}{177}{subsection.7.5.1}
+\contentsline {subsubsection}{Request (path)}{177}{subsubsection*.236}
+\contentsline {subsubsection}{Request example}{178}{subsubsection*.237}
+\contentsline {subsubsection}{Response}{178}{subsubsection*.238}
+\contentsline {subsubsection}{Response example}{179}{subsubsection*.239}
+\contentsline {subsubsection}{Equivalent CLI command}{180}{subsubsection*.240}
+\contentsline {subsection}{\numberline {7.5.2}POST /v1/vfs/\{client\_id\}/components}{180}{subsection.7.5.2}
+\contentsline {subsubsection}{Request (path)}{181}{subsubsection*.241}
+\contentsline {subsubsection}{Request (body)}{181}{subsubsection*.242}
+\contentsline {subsubsection}{Request example}{181}{subsubsection*.243}
+\contentsline {subsubsection}{Response}{181}{subsubsection*.244}
+\contentsline {subsubsection}{Equivalent CLI command}{181}{subsubsection*.245}
+\contentsline {subsection}{\numberline {7.5.3}DELETE /v1/vfs/\{sec id\}/components/\{name\}}{181}{subsection.7.5.3}
+\contentsline {subsubsection}{Request (path)}{181}{subsubsection*.246}
+\contentsline {subsubsection}{Request example}{182}{subsubsection*.247}
+\contentsline {subsubsection}{Response}{182}{subsubsection*.248}
+\contentsline {subsubsection}{Equivalent CLI command}{182}{subsubsection*.249}
+\contentsline {subsection}{\numberline {7.5.4}PUT /v1/vfs/\{client\_id\}/components/\{name\}/ports}{182}{subsection.7.5.4}
+\contentsline {subsubsection}{Request (path)}{182}{subsubsection*.250}
+\contentsline {subsubsection}{Request (body)}{182}{subsubsection*.251}
+\contentsline {subsubsection}{Request example}{183}{subsubsection*.252}
+\contentsline {subsubsection}{Response}{183}{subsubsection*.253}
+\contentsline {subsubsection}{Equivalent CLI command}{183}{subsubsection*.254}
+\contentsline {subsection}{\numberline {7.5.5}PUT /v1/vfs/\{sec id\}/classifier\_table}{183}{subsection.7.5.5}
+\contentsline {subsubsection}{Request (path)}{184}{subsubsection*.255}
+\contentsline {subsubsection}{Request (body)}{184}{subsubsection*.256}
+\contentsline {subsubsection}{Request example}{184}{subsubsection*.257}
+\contentsline {subsubsection}{Response}{184}{subsubsection*.258}
+\contentsline {subsubsection}{Equivalent CLI command}{184}{subsubsection*.259}
+\contentsline {section}{\numberline {7.6}spp\_mirror}{185}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}GET /v1/mirrors/\{client\_id\}}{185}{subsection.7.6.1}
+\contentsline {subsubsection}{Request (path)}{185}{subsubsection*.260}
+\contentsline {subsubsection}{Request example}{185}{subsubsection*.261}
+\contentsline {subsubsection}{Response}{185}{subsubsection*.262}
+\contentsline {subsubsection}{Response example}{186}{subsubsection*.263}
+\contentsline {subsubsection}{Equivalent CLI command}{186}{subsubsection*.264}
+\contentsline {subsection}{\numberline {7.6.2}POST /v1/mirrors/\{client\_id\}/components}{186}{subsection.7.6.2}
+\contentsline {subsubsection}{Request (path)}{187}{subsubsection*.265}
+\contentsline {subsubsection}{Request (body)}{187}{subsubsection*.266}
+\contentsline {subsubsection}{Request example}{187}{subsubsection*.267}
+\contentsline {subsubsection}{Response}{187}{subsubsection*.268}
+\contentsline {subsubsection}{Equivalent CLI command}{187}{subsubsection*.269}
+\contentsline {subsection}{\numberline {7.6.3}DELETE /v1/mirrors/\{client\_id\}/components/\{name\}}{187}{subsection.7.6.3}
+\contentsline {subsubsection}{Request (path)}{187}{subsubsection*.270}
+\contentsline {subsubsection}{Request example}{188}{subsubsection*.271}
+\contentsline {subsubsection}{Response}{188}{subsubsection*.272}
+\contentsline {subsubsection}{Equivalent CLI command}{188}{subsubsection*.273}
+\contentsline {subsection}{\numberline {7.6.4}PUT /v1/mirrors/\{client\_id\}/components/\{name\}/ports}{188}{subsection.7.6.4}
+\contentsline {subsubsection}{Request (path)}{188}{subsubsection*.274}
+\contentsline {subsubsection}{Request (body)}{188}{subsubsection*.275}
+\contentsline {subsubsection}{Request example}{188}{subsubsection*.276}
+\contentsline {subsubsection}{Response}{189}{subsubsection*.277}
+\contentsline {subsubsection}{Equivalent CLI command}{189}{subsubsection*.278}
+\contentsline {section}{\numberline {7.7}spp\_pcap}{189}{section.7.7}
+\contentsline {subsection}{\numberline {7.7.1}GET /v1/pcaps/\{client\_id\}}{189}{subsection.7.7.1}
+\contentsline {subsubsection}{Request (path)}{189}{subsubsection*.279}
+\contentsline {subsubsection}{Request example}{189}{subsubsection*.280}
+\contentsline {subsubsection}{Response}{190}{subsubsection*.281}
+\contentsline {subsubsection}{Response example}{190}{subsubsection*.282}
+\contentsline {subsubsection}{Equivalent CLI command}{191}{subsubsection*.283}
+\contentsline {subsection}{\numberline {7.7.2}PUT /v1/pcaps/\{client\_id\}/capture}{191}{subsection.7.7.2}
+\contentsline {subsubsection}{Request (path)}{191}{subsubsection*.284}
+\contentsline {subsubsection}{Request (body)}{191}{subsubsection*.285}
+\contentsline {subsubsection}{Request example}{191}{subsubsection*.286}
+\contentsline {subsubsection}{Response}{191}{subsubsection*.287}
+\contentsline {subsubsection}{Equivalent CLI command}{191}{subsubsection*.288}
+\contentsline {subsection}{\numberline {7.7.3}DELETE /v1/pcaps/\{client\_id\}}{192}{subsection.7.7.3}
+\contentsline {subsubsection}{Request (path)}{192}{subsubsection*.289}
+\contentsline {subsubsection}{Request example}{192}{subsubsection*.290}
+\contentsline {subsubsection}{Response example}{192}{subsubsection*.291}
+\contentsline {subsubsection}{Equivalent CLI command}{192}{subsubsection*.292}

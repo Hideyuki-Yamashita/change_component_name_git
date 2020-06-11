@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Vdev_test &mdash; Soft Patch Panel 19.11 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API Reference" href="../api_ref/index.html" />
+    <link rel="prev" title="2.1. CPU Layout" href="helpers/tools.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Soft Patch Panel
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                19.11
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gsg/index.html">Getting Started Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usecases/index.html">Use Cases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">SPP Commands</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tools</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="sppc/index.html">1. SPP Container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers/index.html">2. Helper tools</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Vdev_test</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage">3.1. Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">3.2. Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examining-spp-pipe">3.2.1. Examining spp_pipe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examining-vhost">3.2.2. Examining vhost</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Soft Patch Panel</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tools</a> &raquo;</li>
+        
+      <li>3. Vdev_test</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tools/vdev_test.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="vdev-test">
+<span id="spp-tools-vdev-test"></span><h1>3. Vdev_test<a class="headerlink" href="#vdev-test" title="Permalink to this headline">¶</a></h1>
+<p>Vdev_test is a simple application that it forwards packets received
+from rx queue to tx queue on the main core. It can become a secondary
+process of the spp_primary. It is mainly used for testing spp_pipe
+but it can be used to test any virtual Ethernet devices as well.</p>
+<div class="section" id="usage">
+<h2>3.1. Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vdev_test [EAL options] -- [--send] [--create devargs] device-name
+</pre></div>
+</div>
+<p>Vdev_test runs foreground and stops when Ctrl-C is pressed. If <code class="docutils literal notranslate"><span class="pre">--send</span></code>
+option specified a packet is sent first. The virtual Ethernet device can
+be created to specify <code class="docutils literal notranslate"><span class="pre">--create</span></code> option.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the device can be created by EAL <code class="docutils literal notranslate"><span class="pre">--vdev</span></code> option for a
+primary process, <code class="docutils literal notranslate"><span class="pre">--create</span></code> option mainly used by a secondary
+process.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>3.2. Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="examining-spp-pipe">
+<h3>3.2.1. Examining spp_pipe<a class="headerlink" href="#examining-spp-pipe" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="figure-vdev-test-example-pipe">
+<a class="reference internal image-reference" href="../_images/vdev_test_example_pipe.svg"><img alt="../_images/vdev_test_example_pipe.svg" src="../_images/vdev_test_example_pipe.svg" width="50%" /></a>
+</div>
+<p>It is assumed that pipe ports were created beforehand. First run vdev_test
+without <code class="docutils literal notranslate"><span class="pre">--send</span></code> option.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> terminal <span class="m">1</span>
+<span class="gp">$</span> sudo vdev_test -l <span class="m">8</span> -n <span class="m">4</span> --proc-type secondary -- spp_pipe0
+</pre></div>
+</div>
+<p>Then run vdev_test with <code class="docutils literal notranslate"><span class="pre">--send</span></code> option on another terminal.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> terminal <span class="m">2</span>
+<span class="gp">$</span> sudo vdev_test -l <span class="m">9</span> -n <span class="m">4</span> --proc-type secondary -- --send spp_pipe1
+</pre></div>
+</div>
+<p>Press Ctrl-C to stop processes on both terminals after for a while.</p>
+</div>
+<div class="section" id="examining-vhost">
+<h3>3.2.2. Examining vhost<a class="headerlink" href="#examining-vhost" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="figure-vdev-test-example-vhost">
+<a class="reference internal image-reference" href="../_images/vdev_test_example_vhost.svg"><img alt="../_images/vdev_test_example_vhost.svg" src="../_images/vdev_test_example_vhost.svg" width="50%" /></a>
+</div>
+<p>This example is independent of SPP. First run vdev_test using eth_vhost0
+without <code class="docutils literal notranslate"><span class="pre">--send</span></code> option.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> terminal <span class="m">1</span>
+<span class="gp">$</span> sudo vdev_test -l <span class="m">8</span> -n <span class="m">4</span> --vdev eht_vhost0,iface<span class="o">=</span>/tmp/sock0,client<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+  --file-prefix<span class="o">=</span>app1 -- eth_vhost0
+</pre></div>
+</div>
+<p>Then run vdev_test using virtio_user0 with <code class="docutils literal notranslate"><span class="pre">--send</span></code> option on another
+terminal.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> terminal <span class="m">1</span>
+<span class="gp">$</span> sudo vdev_test -l <span class="m">9</span> -n <span class="m">4</span> --vdev virtio_user0,path<span class="o">=</span>/tmp/sock0,server<span class="o">=</span><span class="m">1</span> <span class="se">\</span>
+  --file-prefix<span class="o">=</span>app2 --single-file-segments -- --send virtio_user0
+</pre></div>
+</div>
+<p>Press Ctrl-C to stop processes on both terminals after for a while.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api_ref/index.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="helpers/tools.html" class="btn btn-neutral float-left" title="2.1. CPU Layout" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

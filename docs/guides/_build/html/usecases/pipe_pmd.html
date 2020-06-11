@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>7. Pipe PMD &mdash; Soft Patch Panel 19.11 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SPP Commands" href="../commands/index.html" />
+    <link rel="prev" title="6. Hardware Offload" href="hardware-offload.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Soft Patch Panel
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                19.11
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gsg/index.html">Getting Started Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="spp_nfv.html">1. spp_nfv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_vf.html">2. spp_vf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_mirror.html">3. spp_mirror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_pcap.html">4. spp_pcap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_nodes.html">5. Multiple Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hardware-offload.html">6. Hardware Offload</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Pipe PMD</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-pipe-pmd">7.1. Using pipe PMD</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirement-of-dpdk-application-using-spp-pipe">7.1.1. Requirement of DPDK application using spp_pipe</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">7.2. Use cases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#direct-communication-between-applications">7.2.1. Direct communication between applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fixed-application-chain-using-spp-nfv">7.2.2. Fixed application chain using spp_nfv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#service-function-chaining-using-spp-vf">7.2.3. Service function chaining using spp_vf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">SPP Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Soft Patch Panel</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+      <li>7. Pipe PMD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/pipe_pmd.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pipe-pmd">
+<span id="usecase-pipe-pmd"></span><h1>7. Pipe PMD<a class="headerlink" href="#pipe-pmd" title="Permalink to this headline">¶</a></h1>
+<p>Pipe PMD constitutes a virtual Ethernet device (named spp_pipe) using
+rings which the spp_primary allocated.</p>
+<p>It is necessary for the DPDK application using spp_pipe to implement
+it as the secondary process under the spp_primary as the primary
+process.</p>
+<p>Using spp_pipe enables high-speed packet transfer through rings
+among DPDK applications using spp_pipe and SPP secondary processes
+such as spp_nfv and spp_vf.</p>
+<div class="section" id="using-pipe-pmd">
+<h2>7.1. Using pipe PMD<a class="headerlink" href="#using-pipe-pmd" title="Permalink to this headline">¶</a></h2>
+<p>Create a pipe port by requesting to the spp_primary to use spp_pipe
+beforehand.
+There are <a class="reference internal" href="../commands/primary.html#commands-primary-add"><span class="std std-ref">CLI</span></a> and
+<a class="reference internal" href="../api_ref/spp_primary.html#api-spp-ctl-spp-primary-put-ports"><span class="std std-ref">REST API</span></a> to create a pipe
+port.
+A ring used for rx transfer and a ring used for tx transfer are
+specified at a pipe port creation.</p>
+<p>For example creating <code class="docutils literal notranslate"><span class="pre">pipe:0</span></code> with <code class="docutils literal notranslate"><span class="pre">ring:0</span></code> for rx and
+<code class="docutils literal notranslate"><span class="pre">ring:1</span></code> for tx by CLI as follows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; add pipe:0 ring:0 ring:1
+</pre></div>
+</div>
+<p>The name as the Ethernet device of <code class="docutils literal notranslate"><span class="pre">pipe:N</span></code> is <code class="docutils literal notranslate"><span class="pre">spp_pipeN</span></code>.
+DPDK application which is the secondary process of the spp_primary
+can get the port id of the device using <code class="docutils literal notranslate"><span class="pre">rte_eth_dev_get_port_by_name</span></code>.</p>
+<div class="section" id="requirement-of-dpdk-application-using-spp-pipe">
+<h3>7.1.1. Requirement of DPDK application using spp_pipe<a class="headerlink" href="#requirement-of-dpdk-application-using-spp-pipe" title="Permalink to this headline">¶</a></h3>
+<p>It is necessary to use the common mbuf mempool of the SPP processes.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define PKTMBUF_POOL_NAME &quot;Mproc_pktmbuf_pool&quot;</span>
+
+<span class="k">struct</span> <span class="n">rte_mempool</span> <span class="o">*</span><span class="n">mbuf_pool</span><span class="p">;</span>
+
+<span class="n">mbuf_pool</span> <span class="o">=</span> <span class="n">rte_mempool_lookup</span><span class="p">(</span><span class="n">PKTBBUF_POOL_NAME</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="use-cases">
+<h2>7.2. Use cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p>Here are some examples using spp_pipe.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A ring allocated by the spp_primary assumes it is single
+producer and single consumer. It is user responsibility
+that each ring in the model has single producer and single
+consumer.</p>
+</div>
+<div class="section" id="direct-communication-between-applications">
+<h3>7.2.1. Direct communication between applications<a class="headerlink" href="#direct-communication-between-applications" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="figure-pipe-usecase-pipe">
+<a class="reference internal image-reference" href="../_images/pipe_usecase_pipe.svg"><img alt="../_images/pipe_usecase_pipe.svg" src="../_images/pipe_usecase_pipe.svg" width="50%" /></a>
+</div>
+<p>To create pipe ports by CLI before running applications as follows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; add pipe:0 ring:0 ring:1
+spp &gt; pri; add pipe:1 ring:1 ring:0
+</pre></div>
+</div>
+</div>
+<div class="section" id="fixed-application-chain-using-spp-nfv">
+<h3>7.2.2. Fixed application chain using spp_nfv<a class="headerlink" href="#fixed-application-chain-using-spp-nfv" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="figure-pipe-usecase-sfc-nfv">
+<a class="reference internal image-reference" href="../_images/pipe_usecase_sfc_nfv.svg"><img alt="../_images/pipe_usecase_sfc_nfv.svg" src="../_images/pipe_usecase_sfc_nfv.svg" width="50%" /></a>
+</div>
+<p>To construct the model by CLI before running applications as follows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; add pipe:0 ring:0 ring:1
+spp &gt; pri; add pipe:1 ring:1 ring:2
+spp &gt; nfv 1; add ring:0
+spp &gt; nfv 1; patch phy:0 ring:0
+spp &gt; nfv 1; forward
+spp &gt; nfv 2; add ring:2
+spp &gt; nfv 2; patch ring:2 phy:1
+spp &gt; nfv 2; forward
+</pre></div>
+</div>
+</div>
+<div class="section" id="service-function-chaining-using-spp-vf">
+<h3>7.2.3. Service function chaining using spp_vf<a class="headerlink" href="#service-function-chaining-using-spp-vf" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default" id="figure-pipe-usecase-sfc-vf">
+<a class="reference internal image-reference" href="../_images/pipe_usecase_sfc_vf.svg"><img alt="../_images/pipe_usecase_sfc_vf.svg" src="../_images/pipe_usecase_sfc_vf.svg" width="80%" /></a>
+</div>
+<p>To construct the model by CLI before running applications as follows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; add pipe:0 ring:0 ring:1
+spp &gt; pri; add pipe:1 ring:2 ring:3
+spp &gt; pri; add pipe:2 ring:4 ring:5
+spp &gt; vf 1; component start fwd1 2 forward
+spp &gt; vf 1; component start fwd2 3 forward
+spp &gt; vf 1; component start fwd3 4 forward
+spp &gt; vf 1; component start fwd4 5 forward
+spp &gt; vf 1; port add phy:0 rx fwd1
+spp &gt; vf 1; port add ring:0 tx fwd1
+spp &gt; vf 1; port add ring:1 rx fwd2
+spp &gt; vf 1; port add ring:2 tx fwd2
+spp &gt; vf 1; port add ring:3 rx fwd3
+spp &gt; vf 1; port add ring:4 tx fwd3
+spp &gt; vf 1; port add ring:5 rx fwd4
+spp &gt; vf 1; port add phy:1 tx fwd4
+</pre></div>
+</div>
+<p>Since applications are connected not directly but through spp_vf,
+service chaining can be modified without restarting applications.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../commands/index.html" class="btn btn-neutral float-right" title="SPP Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="hardware-offload.html" class="btn btn-neutral float-left" title="6. Hardware Offload" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

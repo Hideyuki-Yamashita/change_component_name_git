@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Hardware Offload &mdash; Soft Patch Panel 19.11 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Pipe PMD" href="pipe_pmd.html" />
+    <link rel="prev" title="5. Multiple Nodes" href="multi_nodes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Soft Patch Panel
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                19.11
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gsg/index.html">Getting Started Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Use Cases</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="spp_nfv.html">1. spp_nfv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_vf.html">2. spp_vf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_mirror.html">3. spp_mirror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spp_pcap.html">4. spp_pcap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_nodes.html">5. Multiple Nodes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Hardware Offload</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-classification">6.1. Hardware Classification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup">6.1.1. Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">6.1.2. Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#manipulate-vlan-tag">6.2. Manipulate VLAN tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-with-vms">6.3. Connecting with VMs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reference">6.4. Reference</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipe_pmd.html">7. Pipe PMD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands/index.html">SPP Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html">Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/index.html">API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Soft Patch Panel</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Use Cases</a> &raquo;</li>
+        
+      <li>6. Hardware Offload</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/usecases/hardware-offload.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hardware-offload">
+<span id="usecase-hardware-offload"></span><h1>6. Hardware Offload<a class="headerlink" href="#hardware-offload" title="Permalink to this headline">¶</a></h1>
+<p>SPP provides hardware offload functions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We tested following use cases at Connect-X 5 by Mellanox only.
+Even if you cannot use these use cases on different NIC, we don’t support.</p>
+</div>
+<div class="section" id="hardware-classification">
+<h2>6.1. Hardware Classification<a class="headerlink" href="#hardware-classification" title="Permalink to this headline">¶</a></h2>
+<p>Some hardware provides packet classification function based on
+L2 mac address. This use case shows you how to use L2 classification.</p>
+<div class="figure align-default" id="figure-spp-hardware-offload-classify">
+<a class="reference internal image-reference" href="../_images/spp_hardware_offload_classify.svg"><img alt="../_images/spp_hardware_offload_classify.svg" src="../_images/spp_hardware_offload_classify.svg" width="100%" /></a>
+</div>
+<div class="section" id="setup">
+<h3>6.1.1. Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
+<p>Before using hardware packet classification, you must setup number of queues
+in hardware.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">bin/config.sh</span></code>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PRI_PORT_QUEUE</span><span class="o">=(</span>
+ <span class="s2">&quot;0 rxq 10 txq 10&quot;</span>
+ <span class="s2">&quot;1 rxq 16 txq 16&quot;</span>
+<span class="o">)</span>
+</pre></div>
+</div>
+<p>Above example includes the line <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">rxq</span> <span class="pre">10</span> <span class="pre">txq</span> <span class="pre">10</span></code>. <code class="docutils literal notranslate"><span class="pre">0</span></code>
+of this line specifies physical port number, <code class="docutils literal notranslate"><span class="pre">rxq</span> <span class="pre">10</span></code> is for 10 rx-queues,
+<code class="docutils literal notranslate"><span class="pre">txq</span> <span class="pre">10</span></code> is for 10 tx-queues.</p>
+<p>You should uncomment the following block in <code class="docutils literal notranslate"><span class="pre">bin/config.sh</span></code>
+to indicate hardware white list. The option <code class="docutils literal notranslate"><span class="pre">dv_flow_en=1</span></code>
+is for MLX5 poll mode driver.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">PRI_WHITE_LIST</span><span class="o">=(</span>
+ <span class="s2">&quot;0000:04:00.0,dv_flow_en=1&quot;</span>
+ <span class="s2">&quot;0000:05:00.0&quot;</span>
+<span class="o">)</span>
+</pre></div>
+</div>
+<p>After editing <code class="docutils literal notranslate"><span class="pre">bin/config.sh</span></code>, you can launch SPP as following.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> bin/start.sh
+<span class="go">Start spp-ctl</span>
+<span class="go">Start spp_primary</span>
+<span class="go">Waiting for spp_primary is ready .................... OK! (8.5[sec])</span>
+<span class="go">Welcome to the SPP CLI. Type `help` or `?` to list commands.</span>
+<span class="go">spp &gt;</span>
+</pre></div>
+</div>
+<p>Then, you can launch <code class="docutils literal notranslate"><span class="pre">spp_vf</span></code> like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; launch vf 1 -l 2,3,4,5 -m 512 --file-prefix spp \
+-- --client-id 1 -s 127.0.0.1:6666
+...
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h3>6.1.2. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<p>Before configure the flow of classifying packets, you
+can validate such rules by using <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">validate</span></code> command.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow validate phy:0 ingress pattern eth dst is \
+10:22:33:44:55:66 / end actions queue index 1 / end
+spp &gt; pri; flow validate phy:0 ingress pattern eth dst is \
+10:22:33:44:55:67 / end actions queue index 2 / end
+</pre></div>
+</div>
+<p>Then, you can configure flow using <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">create</span></code> command like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow create phy:0 ingress pattern eth dst is \
+10:22:33:44:55:66 / end actions queue index 1 / end
+spp &gt; pri; flow create phy:0 ingress pattern eth dst is \
+10:22:33:44:55:67 / end actions queue index 2 / end
+</pre></div>
+</div>
+<p>You can confirm created flows by using <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">status</span></code>
+commands. <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">list</span></code> command provides the flow information of specified
+physical port.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow list phy:0
+ID      Group   Prio    Attr    Rule
+0       0       0       i--     ETH =&gt; QUEUE
+1       0       0       i--     ETH =&gt; QUEUE
+</pre></div>
+</div>
+<p>To get detailed information for specific rule. The following example shows
+the case where showing detailed information for rule ID <code class="docutils literal notranslate"><span class="pre">0</span></code> of <code class="docutils literal notranslate"><span class="pre">phy:0</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow status phy:0 0
+Attribute:
+  Group   Priority Ingress Egress Transfer
+  0       0        true    false  false
+Patterns:
+  - eth:
+    - spec:
+      - dst: 10:22:33:44:55:66
+      - src: 00:00:00:00:00:00
+      - type: 0x0000
+    - last:
+    - mask:
+      - dst: FF:FF:FF:FF:FF:FF
+      - src: 00:00:00:00:00:00
+      - type: 0x0000
+Actions:
+    - queue:
+      - index: 1
+spp &gt;
+</pre></div>
+</div>
+<p>In this use case, two components <code class="docutils literal notranslate"><span class="pre">fwd1</span></code> and <code class="docutils literal notranslate"><span class="pre">fwd2</span></code> simply forward
+the packet to multi-tx queues. You can start these components like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; component start fwd1 2 forward
+spp &gt; vf 1; component start fwd2 3 forward
+</pre></div>
+</div>
+<p>For each <code class="docutils literal notranslate"><span class="pre">fwd1</span></code> and <code class="docutils literal notranslate"><span class="pre">fwd2</span></code>, configure the rx port like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; port add phy:0 nq 1 rx fwd1
+spp &gt; vf 1; port add phy:0 nq 2 rx fwd2
+</pre></div>
+</div>
+<p>Then, you can configure tx ports like this.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; port add phy:1 nq 1 tx fwd1
+spp &gt; vf 1; port add phy:1 nq 2 tx fwd2
+</pre></div>
+</div>
+<p>For confirming above configuration, you can use ping and tcpdump as described
+in <a class="reference internal" href="spp_vf.html#spp-usecases-vf-cls-icmp"><span class="std std-ref">Classify ICMP Packets</span></a>.</p>
+<p>Also, when you destroy the flow created above, commands will be like the
+following.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow destroy phy:0 0
+spp &gt; pri; flow destroy phy:0 1
+</pre></div>
+</div>
+<p>Or you can destroy all rules on specific hardware
+by using <code class="docutils literal notranslate"><span class="pre">flow</span> <span class="pre">destroy</span></code> command with <code class="docutils literal notranslate"><span class="pre">ALL</span></code> parameter.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow destroy phy:0 ALL
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="manipulate-vlan-tag">
+<h2>6.2. Manipulate VLAN tag<a class="headerlink" href="#manipulate-vlan-tag" title="Permalink to this headline">¶</a></h2>
+<p>Some hardware provides VLAN tag manipulation function.
+This use case shows you the case where incoming VLAN tagged packet detagged
+and non-tagged packet tagged when outgoing using hardware offload function.</p>
+<div class="figure align-default" id="figure-spp-hardware-offload-vlan">
+<a class="reference internal image-reference" href="../_images/spp_hardware_offload_vlan.svg"><img alt="../_images/spp_hardware_offload_vlan.svg" src="../_images/spp_hardware_offload_vlan.svg" width="100%" /></a>
+</div>
+<p>After having done above use case, you can continue to following.
+In this use case, we are assuming incoming packets which includes
+<code class="docutils literal notranslate"><span class="pre">vid=100</span></code> to <code class="docutils literal notranslate"><span class="pre">phy:0</span></code>, these vid will be removed(detagged) and
+transferred to <code class="docutils literal notranslate"><span class="pre">fwd1</span></code>. Tx packets from <code class="docutils literal notranslate"><span class="pre">fwd1</span></code> are sent to
+queue#0 on phy:1 with tagged by <code class="docutils literal notranslate"><span class="pre">vid=100</span></code>. Packets which includes
+<code class="docutils literal notranslate"><span class="pre">vid=200</span></code> to <code class="docutils literal notranslate"><span class="pre">phy:0</span></code> are to be sent to <code class="docutils literal notranslate"><span class="pre">fwd2</span></code> with removing
+the vid,
+Tx packets from <code class="docutils literal notranslate"><span class="pre">fwd2</span></code> are sent to <code class="docutils literal notranslate"><span class="pre">queue#1</span></code> on <code class="docutils literal notranslate"><span class="pre">phy:1</span></code> with tagged
+by <code class="docutils literal notranslate"><span class="pre">vid=200</span></code>.</p>
+<p>For detagging flow creation.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow create phy:0 ingress group 1 pattern eth dst is \
+10:22:33:44:55:66 / vlan vid is 100 / end actions queue index 1 \
+/ of_pop_vlan / end
+spp &gt; pri; flow create phy:0 ingress group 1 pattern eth dst is \
+10:22:33:44:55:67 / vlan vid is 200 / end actions queue index 2 \
+/ of_pop_vlan / end
+spp &gt; pri; flow create phy:0 ingress group 0 pattern eth / end \
+actions jump group 1 / end
+</pre></div>
+</div>
+<p>For tagging flow creation.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow create phy:1 egress group 1 pattern eth dst is \
+10:22:33:44:55:66 / end actions of_push_vlan ethertype 0x8100 \
+/ of_set_vlan_vid vlan_vid 100 / of_set_vlan_pcp vlan_pcp 3 / end
+spp &gt; pri; flow create phy:1 egress group 1 pattern eth dst is \
+10:22:33:44:55:67 / end actions of_push_vlan ethertype 0x8100 \
+/ of_set_vlan_vid vlan_vid 200 / of_set_vlan_pcp vlan_pcp 3 / end
+spp &gt; pri; flow create phy:1 egress group 0 pattern eth / end \
+actions jump group 1 / end
+</pre></div>
+</div>
+<p>If you want to send vlan-tagged packets, the NIC connected to <code class="docutils literal notranslate"><span class="pre">phy:0</span></code>
+will be configured by following.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ sudo ip l add link ens0 name ens0.100 <span class="nb">type</span> vlan id <span class="m">100</span>
+$ sudo ip l add link ens0 name ens0.200 <span class="nb">type</span> vlan id <span class="m">200</span>
+$ sudo ip a add <span class="m">192</span>.168.140.1/24 dev ens0.100
+$ sudo ip a add <span class="m">192</span>.168.150.1/24 dev ens0.100
+$ sudo ip l <span class="nb">set</span> ens0.100 up
+$ sudo ip l <span class="nb">set</span> ens0.200 up
+</pre></div>
+</div>
+</div>
+<div class="section" id="connecting-with-vms">
+<h2>6.3. Connecting with VMs<a class="headerlink" href="#connecting-with-vms" title="Permalink to this headline">¶</a></h2>
+<p>This use case shows you how to configure hardware offload and VMs.</p>
+<div class="figure align-default" id="figure-spp-hardware-offload-vm">
+<a class="reference internal image-reference" href="../_images/spp_hardware_offload_vm.svg"><img alt="../_images/spp_hardware_offload_vm.svg" src="../_images/spp_hardware_offload_vm.svg" width="100%" /></a>
+</div>
+<p>First, we should clean up flows and delete ports.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; port del phy:0 nq 0 rx fwd1
+spp &gt; vf 1; port del phy:0 nq 1 rx fwd2
+spp &gt; vf 1; port del phy:1 nq 0 tx fwd1
+spp &gt; vf 1; port del phy:1 nq 1 tx fwd2
+spp &gt; pri; flow destroy phy:0 ALL
+spp &gt; pri; flow destroy phy:1 ALL
+</pre></div>
+</div>
+<p>Configure flows.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; pri; flow create phy:0 ingress group 1 pattern eth dst is \
+10:22:33:44:55:66 / vlan vid is 100 / end actions queue index 1 \
+/ of_pop_vlan / end
+spp &gt; pri; flow create phy:0 ingress group 1 pattern eth dst is \
+10:22:33:44:55:67 / vlan vid is 200 / end actions queue index 2 \
+/ of_pop_vlan / end
+spp &gt; pri; flow create phy:0 ingress group 0 pattern eth / end \
+actions jump group 1 / end
+spp &gt; pri; flow create phy:0 egress group 1 pattern eth src is \
+10:22:33:44:55:66 / end actions of_push_vlan ethertype 0x8100 \
+/ of_set_vlan_vid vlan_vid 100 / of_set_vlan_pcp vlan_pcp 3 / end
+spp &gt; pri; flow create phy:0 egress group 1 pattern eth src is \
+10:22:33:44:55:67 / end actions of_push_vlan ethertype 0x8100 \
+/ of_set_vlan_vid vlan_vid 200 / of_set_vlan_pcp vlan_pcp 3 / end
+spp &gt; pri; flow create phy:0 egress group 0 pattern eth / end \
+actions jump group 1 / end
+</pre></div>
+</div>
+<p>Start components.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; component start fwd3 4 forward
+spp &gt; vf 1; component start fwd4 5 forward
+</pre></div>
+</div>
+<p>Start and setup two VMs as described in <a class="reference internal" href="spp_vf.html#spp-usecases-vf-ssh"><span class="std std-ref">SSH Login to VMs</span></a>.
+Add ports to forwarders.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spp &gt; vf 1; port add phy:0 nq 1 rx fwd1
+spp &gt; vf 1; port add vhost:0 tx fwd1
+spp &gt; vf 1; port add phy:0 nq 2 rx fwd2
+spp &gt; vf 1; port add vhost:1 tx fwd2
+spp &gt; vf 1; port add vhost:0 rx fwd3
+spp &gt; vf 1; port add phy:0 nq 3 tx fwd3
+spp &gt; vf 1; port add vhost:1 rx fwd4
+spp &gt; vf 1; port add phy:0 nq 4 tx fwd4
+</pre></div>
+</div>
+<p>Then you can login to each VMs.</p>
+<p>Note that you must add arp entries of MAC addresses statically to be resolved.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># terminal 1 on remote host
+# set MAC address
+$ sudo arp -i ens0 -s 192.168.140.31 10:22:33:44:55:66
+$ sudo arp -i ens0 -s 192.168.150.32 10:22:33:44:55:67
+</pre></div>
+</div>
+</div>
+<div class="section" id="reference">
+<h2>6.4. Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<p>The following features are tested.</p>
+<p>MT27710 Family [ConnectX-4 Lx] 1015
+- dstMAC
+- dstMAC(range)</p>
+<p>MT27800 Family [ConnectX-5] 1017
+- dstMAC
+- dstMAC(range)
+- vlan vid
+- vlan vid+dstMAC
+- tagging+detagging</p>
+<p>Ethernet Controller XXV710 for 25GbE SFP28 158b
+- dstMAC</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pipe_pmd.html" class="btn btn-neutral float-right" title="7. Pipe PMD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="multi_nodes.html" class="btn btn-neutral float-left" title="5. Multiple Nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
