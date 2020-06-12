@@ -72,11 +72,11 @@ resource UID which is a combination of port type and its ID such as
 
 If you are reached to the end of arguments, no candidate keyword is displayed.
 It is a completed statement of ``component`` command, and TAB
-completion does not work after ``forward`` because it is ready to run.
+completion does not work after ``forwarder`` because it is ready to run.
 
 .. code-block:: console
 
-    spp > vf 1; component start fw1 5 forward
+    spp > vf 1; component start fw1 5 forwarder
     Succeeded to start component 'fw1' on core:5
 
 It is also completed secondary IDs of ``spp_vf`` and it is helpful if you run
@@ -118,10 +118,10 @@ consists of three parts.
      - C0:8E:CD:38:EA:A8, ring:1
      - C0:8E:CD:38:BC:E6, ring:2
     Components:
-     - core:2 'fwd1' (type: forward)
+     - core:2 'fwd1' (type: forwarder)
        - rx: phy:0 nq 0
        - tx: ring:0
-     - core:3 'mg' (type: merge)
+     - core:3 'mg' (type: merger)
      - core:4 'cls' (type: classifier)
        - rx: phy:0 nq 1
        - tx: ring:1
@@ -149,11 +149,11 @@ component
 
 Assign or release a role of forwarding to worker threads running on each of
 cores which are reserved with ``-c`` or ``-l`` option while launching
-``spp_vf``. The role of the worker is chosen from ``forward``, ``merge`` or
+``spp_vf``. The role of the worker is chosen from ``forwarder``, ``merger`` or
 ``classifier``.
 
-``forward`` role is for simply forwarding from source port to destination port.
-On the other hands, ``merge`` role is for receiving packets from multiple ports
+``forwarder`` role is for simply forwarding from source port to destination port.
+On the other hands, ``merger`` role is for receiving packets from multiple ports
 as N:1 communication, or ``classifier`` role is for sending packet to
 multiple ports by referring MAC address as 1:N communication.
 
@@ -172,25 +172,25 @@ Here are some examples of assigning roles with ``component`` command.
 
 .. code-block:: console
 
-    # assign 'forward' role with name 'fw1' on core 2
-    spp > vf 2; component start fw1 2 forward
+    # assign 'forwarder' role with name 'fw1' on core 2
+    spp > vf 2; component start fw1 2 forwarder
 
-    # assign 'merge' role with name 'mgr1' on core 3
-    spp > vf 2; component start mgr1 3 merge
+    # assign 'merger' role with name 'mgr1' on core 3
+    spp > vf 2; component start mgr1 3 merger
 
     # assign 'classifier' role with name 'cls1' on core 4
     spp > vf 2; component start cls1 4 classifier
 
 In the above examples, each different ``CORE-ID`` is specified to each role.
 You can assign several components on the same core, but performance might be
-decreased. This is an example for assigning two roles of ``forward`` and
-``merge`` on the same ``core 2``.
+decreased. This is an example for assigning two roles of ``forwarder`` and
+``merger`` on the same ``core 2``.
 
 .. code-block:: console
 
     # assign two roles on the same 'core 2'.
-    spp > vf 2; component start fw1 2 forward
-    spp > vf 2; component start mgr1 2 merge
+    spp > vf 2; component start fw1 2 forwarder
+    spp > vf 2; component start mgr1 2 merger
 
 Examples of releasing roles.
 

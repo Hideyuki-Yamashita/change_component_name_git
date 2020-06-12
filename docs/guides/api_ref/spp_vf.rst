@@ -145,7 +145,7 @@ Response example
         {
           "core": 2,
           "name": "fwd0_tx",
-          "type": "forward",
+          "type": "forwarder",
           "rx_port": [
             {
             "port": "ring:0",
@@ -170,7 +170,7 @@ Response example
         {
           "core": 5,
           "name": "fwd1_rx",
-          "type": "forward",
+          "type": "forwarder",
           "rx_port": [
             {
             "port": "vhost:1",
@@ -208,7 +208,7 @@ Response example
         {
           "core": 7,
           "name": "mgr1",
-          "type": "merge",
+          "type": "merger",
           "rx_port": [
             {
               "port": "ring:1",
@@ -273,7 +273,7 @@ Request (path)
 Request (body)
 ~~~~~~~~~~~~~~
 
-``type`` param is oen of ``forward``, ``merge`` or ``classifier``.
+``type`` param is oen of ``forwarder``, ``merger`` or ``classifier``.
 
 .. _table_spp_ctl_spp_vf_components_res:
 
@@ -296,7 +296,7 @@ Request example
 .. code-block:: console
 
     $ curl -X POST -H 'application/json' \
-      -d '{"name": "fwd1", "core": 12, "type": "forward"}' \
+      -d '{"name": "fwd1", "core": 12, "type": "forwarder"}' \
       http://127.0.0.1:7777/v1/vfs/1/components
 
 

@@ -89,9 +89,9 @@ and other options on local host ``host2``.
 
     # terminal 2
     spp > vf 1; component start cls 3 classifier
-    spp > vf 1; component start fwd1 4 forward
-    spp > vf 1; component start fwd2 5 forward
-    spp > vf 1; component start mgr 6 merge
+    spp > vf 1; component start fwd1 4 forwarder
+    spp > vf 1; component start fwd2 5 forwarder
+    spp > vf 1; component start mgr 6 merger
 
 Add ports for each of components as following.
 The number of rx and tx ports are different for each of component's role.
@@ -339,11 +339,11 @@ First of all, start components with names such as ``cls1``, ``fwd1`` or so.
 
     # terminal 2
     spp > vf 1; component start cls1 2 classifier
-    spp > vf 1; component start fwd1 3 forward
-    spp > vf 1; component start fwd2 4 forward
-    spp > vf 1; component start fwd3 5 forward
-    spp > vf 1; component start fwd4 6 forward
-    spp > vf 1; component start mgr1 7 merge
+    spp > vf 1; component start fwd1 3 forwarder
+    spp > vf 1; component start fwd2 4 forwarder
+    spp > vf 1; component start fwd3 5 forwarder
+    spp > vf 1; component start fwd4 6 forwarder
+    spp > vf 1; component start mgr1 7 merger
 
 Each of components must have rx and tx ports for forwarding.
 Add ports for each of components as following.
@@ -390,11 +390,11 @@ Configuration for the second login path is almost the same as the first path.
 
     # terminal 2
     spp > vf 1; component start cls2 8 classifier
-    spp > vf 1; component start fwd5 9 forward
-    spp > vf 1; component start fwd6 10 forward
-    spp > vf 1; component start fwd7 11 forward
-    spp > vf 1; component start fwd8 12 forward
-    spp > vf 1; component start mgr2 13 merge
+    spp > vf 1; component start fwd5 9 forwarder
+    spp > vf 1; component start fwd6 10 forwarder
+    spp > vf 1; component start fwd7 11 forwarder
+    spp > vf 1; component start fwd8 12 forwarder
+    spp > vf 1; component start mgr2 13 merger
 
 Add ports to each of components.
 
